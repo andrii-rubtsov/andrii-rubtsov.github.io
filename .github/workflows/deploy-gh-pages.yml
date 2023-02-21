@@ -19,6 +19,8 @@ jobs:
 
     - name: Update target branch by merging from master
       run: |        
+        git config user.email auto@git-hub-actions.github.com
+        git config user.name auto
         git checkout -B gh-pages
         git merge master
 
@@ -29,7 +31,5 @@ jobs:
         
     - name: Push destination ("docs") dir 
       run: |        
-        git config user.email auto@git-hub-actions.github.com
-        git config user.name auto
         git commit --all -m "[auto] Build production dir"
         git push
