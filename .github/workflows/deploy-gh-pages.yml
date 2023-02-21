@@ -27,9 +27,11 @@ jobs:
     - name: Build minimized and optimized production-ready site assets
       run: |
         npm install
+        rm -rf docs
         npm run build-gh-pages
         
     - name: Push destination ("docs") dir 
-      run: |        
-        git commit --all -m "[auto] Build production dir"
+      run: |      
+        git add docs
+        git commit -am "[auto] Build production dir"
         git push
