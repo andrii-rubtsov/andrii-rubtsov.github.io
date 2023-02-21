@@ -11,8 +11,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
 
     - name: Use Node.js
       uses: actions/setup-node@v3
@@ -36,4 +34,4 @@ jobs:
       run: |      
         git add docs
         git commit -am "[auto] Build production dir"
-        git push --set-upstream origin gh-pages
+        git push
