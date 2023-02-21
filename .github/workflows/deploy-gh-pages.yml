@@ -17,17 +17,19 @@ jobs:
       with:
         node-version: 18
 
-    - name: Build minimized and optimized production-ready site assets
-      run: |
-        
-        git config --global user.email git-hub-actions@github.com
-        git config --global user.name git-hub-actions
-        
+    - name: Recreate target branch
+      run: |        
         git branch -D gh-pages 2>/dev/null
         git checkout -b gh-pages
-        
+
+    - name: Build minimized and optimized production-ready site assets
+      run: |
         npm install
         npm run build-gh-pages
         
-        git commit -am "[auto] Build production dir"
+    - name: Push destination ("docs") dir 
+      run: |        
+        git config user.email auto@git-hub-actions.github.com
+        git config user.name auto
+        git commit --all -m "[auto] Build production dir"
         git push
