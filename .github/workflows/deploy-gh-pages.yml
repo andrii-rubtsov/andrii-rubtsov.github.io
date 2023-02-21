@@ -1,0 +1,33 @@
+name: Build site static dir with 'npm' and push to a dedicated 'Git' branch
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Build minimized and optimized production-ready site assets
+      run: |
+        
+        git config --global user.email git-hub-actions@github.com
+        git config --global user.name git-hub-actions
+        
+        git branch -D gh-pages 2>/dev/null
+        git checkout -b gh-pages
+        
+        npm install
+        vite build-gh-pages
+        
+        git commit -am "[auto] Build production dir"
+        git push
