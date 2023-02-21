@@ -27,7 +27,7 @@ jobs:
         git checkout -b gh-pages
         
         npm install
-        vite build-gh-pages
+        npm run build-gh-pages
         
         git commit -am "[auto] Build production dir"
         git push
