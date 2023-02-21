@@ -39,4 +39,4 @@ jobs:
       run: |      
         git add docs
         git commit -am "[auto] Build production dir"
-        git push origin gh-pages
+        git push origin gh-pages --force
